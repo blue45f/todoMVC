@@ -11,7 +11,19 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <section>
+      <header>
+        <h1>Todo list</h1>
+        <input id="todo-input" type="text" placeholder="What you have to do?" />
+      </header>
+      <ul id="todo-list">
+        <li class="empty">
+          Todo is not found.
+        </li>
+      </ul>
+      <footer>
+        <small id="todo-stat"></small>
+      </footer>
+    </section>
   </body>
 </html>

@@ -1,8 +1,3 @@
-import Vue from "vue";
-import App from "./App.vue";
+import Controller from "./Controller";
 
-Vue.config.productionTip = false;
-
-new Vue({
-  render: h => h(App)
-}).$mount("#app");
+const controller: Controller = new Controller("TodoList");
