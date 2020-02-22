@@ -1,21 +1,23 @@
 import Item from "@/Item";
 import { statTpl, todoListTpl } from "@/templates";
 import View from "@/core/View";
-import { clone } from "@/helpers";
 
 interface Data {
     items: Array<Item>;
     lefts: number;
 }
 
-export default class TodoView extends View<Data> {
+export default class TodoView extends View {
     private readonly $todoList: Element | null;
+
     private readonly $todoInput: HTMLInputElement | null;
+
     private readonly $todoStat: Element | null;
-    private readonly data: Data;
+
+    protected readonly data: Data;
 
     constructor(data: Data) {
-        super();
+        super(data);
 
         this.data = data;
         this.$todoList = document.querySelector("#todo-list");
@@ -73,18 +75,6 @@ export default class TodoView extends View<Data> {
             this.$todoStat.innerHTML = statTpl(this.data.lefts);
         }
 
-        this.requestRender = 0;
-    }
-
-    protected onTick(): void {
-        const data: Data = this.model as Data;
-
-        if (data.items) {
-            if (JSON.stringify(data.items).toString() !== JSON.stringify(this.data.items).toString()) {
-                data.items = clone(this.data.items);
-            }
-        } else {
-            data.items = clone(this.data.items);
-        }
+        super.render();
     }
 }
