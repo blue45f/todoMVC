@@ -10,6 +10,7 @@ export default class Store {
         this.localStorage = window.localStorage;
         this.subscribers = [];
         this.key = key;
+        this.publish();
     }
 
     private getStorage(): Array<Item> {
@@ -29,25 +30,12 @@ export default class Store {
         this.subscribers.forEach(subscriber => subscriber(this.getStorage()));
     }
 
-    public initialize(): Store {
-        this.publish();
-        return this;
-    }
-
     public insert(item: Item): void {
         this.setStorage((this.items = this.getStorage().concat([item])));
     }
 
-    public find(query: any): Array<Item> {
-        return this.getStorage().filter((item: any) => {
-            for (const key in query) {
-                if (item[key] !== query[key]) {
-                    return false;
-                }
-            }
-
-            return true;
-        });
+    public find(id: string): Item | undefined {
+        return this.getStorage().find((item: Item): boolean => item.id === id);
     }
 
     public update(patch: Item): void {
