@@ -1,6 +1,5 @@
-import Item from "./Item";
-import Store from "./Store";
-import TodoView from "./TodoView";
+import Item from "@/Item";
+import TodoView from "@/TodoView";
 
 interface Data {
     items: Array<Item>;

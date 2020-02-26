@@ -7,7 +7,7 @@ interface Data {
     lefts: number;
 }
 
-export default class TodoView extends View {
+export default class TodoView extends View<Data> {
     private readonly $todoList: Element | null;
 
     private readonly $todoInput: HTMLInputElement | null;
@@ -70,10 +70,10 @@ export default class TodoView extends View {
         if (this.$todoList) {
             this.$todoList.innerHTML = todoListTpl(this.data.items);
         }
-
+        /*
         if (this.$todoStat) {
             this.$todoStat.innerHTML = statTpl(this.data.lefts);
-        }
+        }*/
 
         super.render();
     }
